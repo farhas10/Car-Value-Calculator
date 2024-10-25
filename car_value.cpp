@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cmath>
-
+using namespace std;
 /**
  * A struct for holding information about a car.
  */
@@ -9,12 +9,12 @@ struct Car {
     /**
      * The make (brand) of the car.
      */
-    std::string make;
+    string make;
     
     /**
      * The model of the car.
      */
-    std::string model;
+    string model;
 
     /**
      * The year the car was made.
@@ -45,15 +45,40 @@ struct Car {
  */
 float calculateCarValue(Car car, float years_from_now) {
 
-    // *** Task: Implement this function *** //
+    //Tesla rate condition.
+    if (car.make == "Tesla" || car.make == "tesla"){
+        return (car.price_dollars * pow(2.7182818, -0.25 * years_from_now));
+    }
 
-    // *** End Student Code *** //
+    //Mercedes rate condition.
+    else if (car.make == "Mercedes" || car.make == "mercedes"){
+        return (car.price_dollars * pow(2.7182818, -0.15 * years_from_now));
+    }
+
+    //All else rate condition.
+    else{
+        return (car.price_dollars * pow(2.7182818, -0.20 * years_from_now));
+    }
+
 }
 
 int main() {
 
     // *** Task: Collect information about the car then calculate its value with calculate_car_value() *** //
-
+    Car car;
+    int depreciation;
+    cout << "Enter the make of your car: " << "\n";
+    cin >> car.make;
+    cout << "Enter the model of your car: " << "\n";
+    cin >> car.model;
+    cout << "Enter the year of your car: " << "\n";
+    cin >> car.year;
+    cout << "Enter the current price of your car: " << "\n";
+    cin >> car.price_dollars;
+    cout << "How long would you like to calculate the depreciation?" << "\n";
+    cin >> depreciation;
+    cout << "In " << depreciation << " years, the car will be worth: " << calculateCarValue(car, depreciation) << "\n";
+    
     // *** End Student Code *** //
 
     return 0;
